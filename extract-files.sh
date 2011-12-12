@@ -98,6 +98,7 @@ adb pull /system/vendor/lib/libsrv_um.so ../../../vendor/$MANUFACTURER/$DEVICE/p
 echo /system/vendor/lib/libusc.s
 adb pull /system/vendor/lib/libusc.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libusc.so
 
+echo below add by shifeng
 echo /system/lib/hw/audio_policy.herring.so
 adb pull /system/lib/hw/audio_policy.herring.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/audio_policy.herring.so
 
@@ -107,6 +108,8 @@ adb pull /system/lib/hw/audio.primary.herring.so ../../../vendor/$MANUFACTURER/$
 echo /system/lib/hw/camera.herring.so
 adb pull /system/lib/hw/camera.herring.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/camera.herring.so
 
+echo /system/modules/bcm4329.ko
+adb pull /system/modules/bcm4329.ko ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/bcm4329.ko
 
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g | sed s/__MANUFACTURER__/$MANUFACTURER/g > ../../../vendor/$MANUFACTURER/$DEVICE/device-vendor-blobs.mk
@@ -159,7 +162,8 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libusc.so:system/vendor/lib/libusc.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/audio_policy.herring.so:system/lib/hw/audio_policy.herring.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/audio.primary.herring.so:system/lib/hw/audio.primary.herring.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/camera.herring.so:system/lib/hw/camera.herring.so
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/camera.herring.so:system/lib/hw/camera.herring.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/bcm4329.ko:system/modules/bcm4329.ko
 EOF
 
 ./setup-makefiles.sh
