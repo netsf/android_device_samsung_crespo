@@ -111,6 +111,11 @@ adb pull /system/lib/hw/camera.herring.so ../../../vendor/$MANUFACTURER/$DEVICE/
 echo /system/modules/bcm4329.ko
 adb pull /system/modules/bcm4329.ko ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/bcm4329.ko
 
+echo /system/lib/libs3cjpeg.so
+adb pull /system/lib/libs3cjpeg.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libs3cjpeg.so
+
+
+
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g | sed s/__MANUFACTURER__/$MANUFACTURER/g > ../../../vendor/$MANUFACTURER/$DEVICE/device-vendor-blobs.mk
 # Copyright (C) 2010 The Android Open Source Project
@@ -163,7 +168,8 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/audio_policy.herring.so:system/lib/hw/audio_policy.herring.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/audio.primary.herring.so:system/lib/hw/audio.primary.herring.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/camera.herring.so:system/lib/hw/camera.herring.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/bcm4329.ko:system/modules/bcm4329.ko
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/bcm4329.ko:system/modules/bcm4329.ko \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libs3cjpeg.so:system/lib/libs3cjpeg.so
 EOF
 
 ./setup-makefiles.sh
