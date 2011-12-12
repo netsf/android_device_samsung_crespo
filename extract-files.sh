@@ -20,33 +20,94 @@ DEVICE=crespo
 MANUFACTURER=samsung
 
 mkdir -p ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+
+echo /system/etc/gps.conf
 adb pull /system/etc/gps.conf ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gps.conf
+
+echo /system/lib/libpn544_fw.so
 adb pull /system/lib/libpn544_fw.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libpn544_fw.so
+
+echo /system/lib/libsecril-client.so
 adb pull /system/lib/libsecril-client.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libsecril-client.so
+
+echo /system/vendor/bin/gpsd
 adb pull /system/vendor/bin/gpsd ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gpsd
 chmod 755 ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gpsd
+
+echo /system/vendor/bin/pvrsrvinit
 adb pull /system/vendor/bin/pvrsrvinit ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/pvrsrvinit
 chmod 755 ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/pvrsrvinit
+
+echo /system/vendor/etc/gps.xml
 adb pull /system/vendor/etc/gps.xml ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gps.xml
+
+echo /system/vendor/firmware/bcm4329.hcd
 adb pull /system/vendor/firmware/bcm4329.hcd ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/bcm4329.hcd
+
+echo /system/vendor/firmware/cypress-touchkey.bin
 adb pull /system/vendor/firmware/cypress-touchkey.bin ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/cypress-touchkey.bin
+
+echo /system/vendor/firmware/nvram_net.txt
 adb pull /system/vendor/firmware/nvram_net.txt ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/nvram_net.txt
+
+echo /system/vendor/firmware/samsung_mfc_fw.bin
 adb pull /system/vendor/firmware/samsung_mfc_fw.bin ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/samsung_mfc_fw.bin
+
+echo /system/vendor/lib/egl/libEGL_POWERVR_SGX540_120.so
 adb pull /system/vendor/lib/egl/libEGL_POWERVR_SGX540_120.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libEGL_POWERVR_SGX540_120.so
+
+echo /system/vendor/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so
 adb pull /system/vendor/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv1_CM_POWERVR_SGX540_120.so
+
+echo /system/vendor/lib/egl/libGLESv2_POWERVR_SGX540_120.so
 adb pull /system/vendor/lib/egl/libGLESv2_POWERVR_SGX540_120.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv2_POWERVR_SGX540_120.so
+
+echo /system/vendor/lib/hw/gps.s5pc110.so
 adb pull /system/vendor/lib/hw/gps.s5pc110.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gps.s5pc110.so
+
+echo /system/vendor/lib/hw/gralloc.s5pc110.so
 adb pull /system/vendor/lib/hw/gralloc.s5pc110.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gralloc.s5pc110.so
+
+echo /system/vendor/lib/libakm.so
 adb pull /system/vendor/lib/libakm.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libakm.so
+
+echo /system/vendor/lib/libglslcompiler.so
 adb pull /system/vendor/lib/libglslcompiler.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libglslcompiler.so
+
+echo /system/vendor/lib/libIMGegl.so
 adb pull /system/vendor/lib/libIMGegl.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libIMGegl.so
+
+echo /system/vendor/lib/libpvr2d.so
 adb pull /system/vendor/lib/libpvr2d.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libpvr2d.so
+
+echo /system/vendor/lib/libpvrANDROID_WSEGL.so
 adb pull /system/vendor/lib/libpvrANDROID_WSEGL.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libpvrANDROID_WSEGL.so
+
+echo /system/vendor/lib/libPVRScopeServices.so
 adb pull /system/vendor/lib/libPVRScopeServices.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libPVRScopeServices.so
+
+echo /system/vendor/lib/libsec-ril.so
 adb pull /system/vendor/lib/libsec-ril.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libsec-ril.so
+
+echo /system/vendor/lib/libsrv_init.so
 adb pull /system/vendor/lib/libsrv_init.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libsrv_init.so
+
+echo /system/vendor/lib/libsrv_um.so
 adb pull /system/vendor/lib/libsrv_um.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libsrv_um.so
+
+echo /system/vendor/lib/libusc.s
 adb pull /system/vendor/lib/libusc.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libusc.so
+
+echo /system/lib/hw/audio_policy.herring.so
+adb pull /system/lib/hw/audio_policy.herring.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/audio_policy.herring.so
+
+echo /system/lib/hw/audio.primary.herring.so
+adb pull /system/lib/hw/audio.primary.herring.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/audio.primary.herring.so
+
+echo /system/lib/hw/camera.herring.so
+adb pull /system/lib/hw/camera.herring.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/camera.herring.so
+
+
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g | sed s/__MANUFACTURER__/$MANUFACTURER/g > ../../../vendor/$MANUFACTURER/$DEVICE/device-vendor-blobs.mk
 # Copyright (C) 2010 The Android Open Source Project
@@ -95,7 +156,10 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsec-ril.so:system/vendor/lib/libsec-ril.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsrv_init.so:system/vendor/lib/libsrv_init.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsrv_um.so:system/vendor/lib/libsrv_um.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libusc.so:system/vendor/lib/libusc.so
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libusc.so:system/vendor/lib/libusc.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/audio_policy.herring.so:system/lib/hw/audio_policy.herring.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/audio.primary.herring.so:system/lib/hw/audio.primary.herring.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/camera.herring.so:system/lib/hw/camera.herring.so
 EOF
 
 ./setup-makefiles.sh
